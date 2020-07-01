@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "952448165862",
+    "firebase_url": "https://effortsapp.firebaseio.com",
+    "project_id": "effortsapp",
+    "storage_bucket": "effortsapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952448165862:android:95cde7d8d6bdd74ddb1827",
+        "android_client_info": {
+          "package_name": "com.example.effors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952448165862-9p7ltd2hn27b1l2stt370k48splcomr0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.effors",
+            "certificate_hash": "e697336b9940ef5cb6b826861aa513cf87551da2"
+          }
+        },
+        {
+          "client_id": "952448165862-73mlqvnqevkbhk8ne2ib51m8k2hq0d33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy_ylqEGSeciX8wHDZJOR5UvyXs1OXJjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952448165862-73mlqvnqevkbhk8ne2ib51m8k2hq0d33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
