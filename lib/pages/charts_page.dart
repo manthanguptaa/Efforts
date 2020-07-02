@@ -14,12 +14,12 @@ class ChartsPage extends StatefulWidget {
 
 class _ChartsPageState extends State<ChartsPage> {
   @override
-  List<charts.Series<Record, String>> _seriesLineData;
+  List<charts.Series<Record,DateTime>> _seriesLineData;
   List<Record> myData;
   _generateData(myData) {
     _seriesLineData.add(charts.Series(
         data: myData,
-        domainFn: (Record record, _) => record.date.toString(),
+        domainFn: (Record record, _) => record.date,
         measureFn: (Record record, _) => record.hold,
         id: 'Breath Hold Time'));
   }

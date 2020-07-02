@@ -18,7 +18,7 @@ class _TimerPageState extends State<TimerPage> {
     timerAd.load();
     return Center(
       child: _TransitionListTile(
-        title: "Tap To Play",
+        title: "Tap On Play",
         subtitle: "",
         onTap: () async{
           timerAd.show(

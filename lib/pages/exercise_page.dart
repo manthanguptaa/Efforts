@@ -26,9 +26,9 @@ class _ExercisePageState extends State<ExercisePage> {
           direction: Axis.vertical,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 12.0, left: 15.0),
+              padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Advised For COVID-19 Patients",
+                "Deep breathing exercises to \nstrengthen lungs",
                 style: GoogleFonts.lato(
                     fontSize: 23.0,
                     fontWeight: FontWeight.w400,
@@ -40,7 +40,7 @@ class _ExercisePageState extends State<ExercisePage> {
               child: Container(
                 width: dev_width - 50,
                 child: Text(
-                  "1. Take a deep breath for 5secs",
+                  "1. Take deep breath slowly",
                   style: GoogleFonts.lato(
                       fontSize: 18.0, fontWeight: FontWeight.w300),
                 ),

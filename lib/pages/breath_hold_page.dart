@@ -506,33 +506,48 @@ class _HoldState extends State<Hold> {
                 print('Listen every second. $value');
                 return Column(
                   children: [
-                    Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 4),
-                                child: Text(
-                                  'Seconds :',
-                                  style: GoogleFonts.lato(
-                                      fontSize: 20,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
+                    Stack(children: [
+                      Center(
+                        child: Opacity(
+                          opacity: 0.8,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: MediaQuery.of(context).size.width / 2,
+                            decoration: BoxDecoration(
+                              border:Border.all(color: Colors.white,width: 2.0),
+                                borderRadius: BorderRadius.all(Radius.circular(
+                                    MediaQuery.of(context).size.width / 2)),
+                                ),
+                          ),
+                        ),
+                      ),
+                      Center(
+                          child:
+                              Padding(
+                                padding:EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height/12),
+                                child: Text(value.toString(), style: GoogleFonts.lato(
+                                  fontSize: 45.0,
+                                  fontWeight: FontWeight.bold,
+                                  color:AppTheme.beige
                                 )),
-                            Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
-                                child: Text(value.toString(),
-                                    style: GoogleFonts.lato(
-                                        fontSize: 30,
-                                        color: Colors.redAccent,
-                                        fontWeight: FontWeight.bold)))
-                          ],
-                        )),
+                              ))
+                    ]),
+                    // Padding(
+                    //     padding: const EdgeInsets.all(8),
+                    //     child: Container(
+                    //       height: MediaQuery.of(context).size.height / 4,
+                    //       width: MediaQuery.of(context).size.width / 1.5,
+                    //       decoration: BoxDecoration(
+                    //           shape: BoxShape.circle, color: Colors.white),
+                    //       child: Text(value.toString(),
+                    //           style: GoogleFonts.lato(
+                    //               fontSize: 30,
+                    //               color: Colors.redAccent,
+                    //               fontWeight: FontWeight.bold)),
+                    //     )),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/4),
+                      padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height / 4.52),
                       child: SizedBox(
                           height: 60.0,
                           width: 60.0,

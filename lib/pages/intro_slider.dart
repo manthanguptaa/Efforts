@@ -39,14 +39,14 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       pages: [
         PageViewModel(
           title: "Timer",
-          body: "Record your breath hold time easily on a single tap",
+          body: "Record your breath hold time and measure lungs capacity on a single tap",
           image: _buildImage('timer.png'),
           decoration: pageDecoration,
         ),
         PageViewModel(
           title: "Charts",
           body:
-              "Track your breath hold time and get an idea about your lung capacity",
+              "Track your breath hold time and get an idea about your lungs capacity",
           image: _buildImage('charts.png'),
           decoration: pageDecoration,
         ),
@@ -54,6 +54,13 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           title: "Breathing Exercise",
           body: "Do breathing exercise as recommended by doctors",
           image: _buildImage('breathing_exercise.png'),
+          decoration: pageDecoration,
+        ),
+        PageViewModel(
+          title: "Reminder",
+          body:
+              "Remind yourself to take efforts to safeguard community and self",
+          image: _buildImage('reminder.png'),
           decoration: pageDecoration,
         ),
       ],

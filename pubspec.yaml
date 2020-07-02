@@ -72,6 +72,7 @@ flutter:
      - assets/timer.png
      - assets/charts.png
      - assets/breathing_exercise.png
+     - assets/reminder.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
