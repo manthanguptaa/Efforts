@@ -20,9 +20,6 @@ class _DeepBreathingPageState extends State<DeepBreathingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final dev_height =
-        MediaQuery.of(context).size.height; //height of device screen
-    final dev_width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(children: [
         Container(

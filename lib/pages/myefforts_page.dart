@@ -1,4 +1,3 @@
-import 'package:effors/constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -20,12 +19,11 @@ class _MyEffortsPageState extends State<MyEffortsPage> {
     String month = monthFormath.format(dt);
     String year = yearFormat.format(dt);
     String weekday = weekdayFormat.format(dt);
-    List<Color> c = [AppTheme.darkBlue, AppTheme.turquoise];
     final dev_height =
         MediaQuery.of(context).size.height; //height of device screen
     final dev_width = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Wrap(
+      //crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 10.0, left: 20.0),
@@ -89,15 +87,27 @@ class _MyEffortsPageState extends State<MyEffortsPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Wrap(children: [
-                                  Text("Remember",
-                                      style:
-                                          GoogleFonts.lato(color: Colors.red)),
-                                  Text(" to do warm water gargel,",
-                                      style: GoogleFonts.lato()),
-                                  Text(" when I come home after work",
-                                      style: GoogleFonts.lato())
-                                ]),
+                                child: RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: "Remember",
+                                            style: GoogleFonts.lato(color: Colors.red)),
+                                        TextSpan(
+                                            text: " to do warm gargel when I come home after work",
+                                            style: GoogleFonts.lato())
+                                      ]),
+                                ),
+                                // child: Wrap(children: [
+                                //   Text("Remember",
+                                //       style:
+                                //           GoogleFonts.lato(color: Colors.red)),
+                                //   Text(" to do warm water gargel,",
+                                //       style: GoogleFonts.lato()),
+                                //   Text(" when I come home after work",
+                                //       style: GoogleFonts.lato())
+                                // ]),
                               )
                             ],
                           )),
@@ -129,15 +139,27 @@ class _MyEffortsPageState extends State<MyEffortsPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Wrap(children: [
-                                  Text("Remember",
-                                      style:
-                                          GoogleFonts.lato(color: Colors.red)),
-                                  Text(" to drink turmeric milk at night",
-                                      style: GoogleFonts.lato()),
-                                  Text(" once in a week",
-                                      style: GoogleFonts.lato())
-                                ]),
+                                child:RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: "Remember",
+                                            style: GoogleFonts.lato(color: Colors.red)),
+                                        TextSpan(
+                                            text: " to drink turmeric milk at night once a week",
+                                            style: GoogleFonts.lato())
+                                      ]),
+                                ),
+                                // child: Wrap(children: [
+                                //   Text("Remember",
+                                //       style:
+                                //           GoogleFonts.lato(color: Colors.red)),
+                                //   Text(" to drink turmeric milk at night",
+                                //       style: GoogleFonts.lato()),
+                                //   Text(" once in a week",
+                                //       style: GoogleFonts.lato())
+                                // ]),
                               )
                             ],
                           )),
@@ -169,15 +191,27 @@ class _MyEffortsPageState extends State<MyEffortsPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Wrap(children: [
-                                  Text("Remember",
-                                      style:
-                                          GoogleFonts.lato(color: Colors.red)),
-                                  Text(" to buy sanitiser before running",
-                                      style: GoogleFonts.lato()),
-                                  Text(" out of them",
-                                      style: GoogleFonts.lato())
-                                ]),
+                                child:RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: "Remember",
+                                            style: GoogleFonts.lato(color: Colors.red)),
+                                        TextSpan(
+                                            text: " to buy sanitiser before running out of them",
+                                            style: GoogleFonts.lato())
+                                      ]),
+                                ),
+                                // child: Wrap(children: [
+                                //   Text("Remember",
+                                //       style:
+                                //           GoogleFonts.lato(color: Colors.red)),
+                                //   Text(" to buy sanitiser before running",
+                                //       style: GoogleFonts.lato()),
+                                //   Text(" out of them",
+                                //       style: GoogleFonts.lato())
+                                // ]),
                               )
                             ],
                           )),
@@ -209,15 +243,27 @@ class _MyEffortsPageState extends State<MyEffortsPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Wrap(children: [
-                                  Text("Remember",
-                                      style:
-                                          GoogleFonts.lato(color: Colors.red)),
-                                  Text(" to help your peers in society",
-                                      style: GoogleFonts.lato()),
-                                  Text(" once in a week",
-                                      style: GoogleFonts.lato())
-                                ]),
+                                child:RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: "Remember",
+                                            style: GoogleFonts.lato(color: Colors.red)),
+                                        TextSpan(
+                                            text: " to help your peers in society once in a week",
+                                            style: GoogleFonts.lato())
+                                      ]),
+                                ),
+                                // child: Wrap(children: [
+                                //   Text("Remember",
+                                //       style:
+                                //           GoogleFonts.lato(color: Colors.red)),
+                                //   Text(" to help your peers in society",
+                                //       style: GoogleFonts.lato()),
+                                //   Text(" once in a week",
+                                //       style: GoogleFonts.lato())
+                                // ]),
                               )
                             ],
                           )),
@@ -249,13 +295,25 @@ class _MyEffortsPageState extends State<MyEffortsPage> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Wrap(children: [
-                                  Text("Remember",
-                                      style:
-                                          GoogleFonts.lato(color: Colors.red)),
-                                  Text(" to take multivitamins",
-                                      style: GoogleFonts.lato()),
-                                ]),
+                                child:RichText(
+                                  text: TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: "Remember",
+                                            style: GoogleFonts.lato(color: Colors.red)),
+                                        TextSpan(
+                                            text: " to take multivitamins",
+                                            style: GoogleFonts.lato())
+                                      ]),
+                                ),
+                                // child: Wrap(children: [
+                                //   Text("Remember",
+                                //       style:
+                                //           GoogleFonts.lato(color: Colors.red)),
+                                //   Text(" to take multivitamins",
+                                //       style: GoogleFonts.lato()),
+                                // ]),
                               )
                             ],
                           )),

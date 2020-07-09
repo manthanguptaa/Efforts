@@ -4,11 +4,9 @@ import 'package:effors/services/user_records.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_country_picker/country.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl/intl.dart';
 import 'package:random_string/random_string.dart';
-import 'dart:math' show Random;
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final usersRef = Firestore.instance.collection("user");
@@ -59,6 +57,9 @@ class AuthService {
 
   Future registerWithEmailAndPassword(
       String name, String email, String password) async {
+    var dt = DateTime.now();
+    var newFormat = DateFormat("d MMMM y");
+    String updateDt = newFormat.format(dt);
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -146,7 +147,7 @@ class AuthService {
     FirebaseUser user = authResult.user;
 
     final DocumentSnapshot doc = await usersRef.document(user.uid).get();
-     var dt = DateTime.now();
+    var dt = DateTime.now();
     var newFormat = DateFormat("d MMMM y");
     String updateDt = newFormat.format(dt);
     if (!doc.exists) {
@@ -163,7 +164,7 @@ class AuthService {
           .document(user.uid)
           .collection('record')
           .document(randomAlpha(5))
-          .setData({'hold': 0, 'date':updateDt.toString()});
+          .setData({'hold': 0, 'date': updateDt.toString()});
     }
   }
 
@@ -188,5 +189,16 @@ class AuthService {
         .collection('record')
         .document(randomAlpha(5))
         .setData({'hold': hold, 'date': updateDt.toString()});
+  }
+
+  Future<String> getWakeTime() async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    Firestore.instance
+        .collection("user")
+        .document(firebaseUser.uid)
+        .get()
+        .then((value) {
+      return value.data["wakeTime"];
+    });
   }
 }

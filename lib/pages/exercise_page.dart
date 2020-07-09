@@ -1,9 +1,9 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:effors/constants/color.dart';
 import 'package:effors/pages/deep_breathing_exercise_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:effors/services/admob_service.dart';
-import 'package:firebase_admob/firebase_admob.dart';
 
 class ExercisePage extends StatefulWidget {
   @override
@@ -13,14 +13,16 @@ class ExercisePage extends StatefulWidget {
 class _ExercisePageState extends State<ExercisePage> {
   final ams = AdMobService();
   @override
+  void initState() {
+    super.initState();
+    Admob.initialize(ams.getAdMobAppId());
+  }
+  @override
   Widget build(BuildContext context) {
-    InterstitialAd timerAd = ams.getAds();
-    timerAd.load();
-    final dev_height =
-        MediaQuery.of(context).size.height; //height of device screen
+
     final dev_width = MediaQuery.of(context).size.width;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Wrap(
+      // crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Wrap(
           direction: Axis.vertical,
@@ -110,11 +112,7 @@ class _ExercisePageState extends State<ExercisePage> {
               child: _TransitionListTile(
                 title: "Tap On Play",
                 subtitle: "",
-                onTap: () async {
-                  timerAd.show(
-                      anchorType: AnchorType.bottom,
-                      anchorOffset: 0.0,
-                      horizontalCenterOffset: 0.0);
+                onTap: (){
                   Navigator.of(context).push(
                     MaterialPageRoute<void>(
                       builder: (BuildContext context) {
@@ -125,6 +123,12 @@ class _ExercisePageState extends State<ExercisePage> {
                 },
               )),
         ),
+         Padding(
+           padding:EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height/4),
+           child: AdmobBanner(
+                adUnitId: ams.getBannerAd(),
+                adSize: AdmobBannerSize.FULL_BANNER),
+         )
       ],
     );
   }

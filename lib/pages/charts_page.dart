@@ -14,26 +14,28 @@ class ChartsPage extends StatefulWidget {
 
 class _ChartsPageState extends State<ChartsPage> {
   @override
-  List<charts.Series<Record,DateTime>> _seriesLineData;
-  List<Record> myData;
+  List<charts.Series<Record, String>> _seriesLineData =
+      List<charts.Series<Record, String>>();
+  List<Record> myData = List<Record>();
   _generateData(myData) {
     _seriesLineData.add(charts.Series(
         data: myData,
-        domainFn: (Record record, _) => record.date,
+        domainFn: (Record record, _) => record.date.toString(),
         measureFn: (Record record, _) => record.hold,
+        colorFn: (_, __) => charts.ColorUtil.fromDartColor(Color(0xFF4287f5)),
         id: 'Breath Hold Time'));
   }
 
   // void initState() {
   //   super.initState();
-  //   _seriesLineData = List<charts.Series<Record, DateTime>>();
+  //   _seriesLineData = List<charts.Series<Record, String>>();
   // }
 
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: EdgeInsets.only(
@@ -41,7 +43,7 @@ class _ChartsPageState extends State<ChartsPage> {
                 top: 24,
               ),
               child: Text('Breath Hold Time',
-                  style: const TextStyle(
+                  style:GoogleFonts.lato(
                       fontSize: 30.0,
                       fontWeight: FontWeight.w700,
                       color: AppTheme.darkBlue)),
@@ -55,7 +57,7 @@ class _ChartsPageState extends State<ChartsPage> {
 
   Widget _buildBody(context) {
     final user = Provider.of<User>(context);
-    return StreamBuilder(
+    return StreamBuilder<QuerySnapshot>(
       stream: Firestore.instance
           .collection('user')
           .document(user.uid)
@@ -65,7 +67,8 @@ class _ChartsPageState extends State<ChartsPage> {
         if (!snapshot.hasData) {
           return LinearProgressIndicator();
         } else {
-          List<Record> rec = snapshot.data.documents
+          List<Record> rec = List<Record>();
+          rec = snapshot.data.documents
               .map((documentSnapshot) => Record.fromMap(documentSnapshot.data))
               .toList();
           return _buildChart(context, rec);
@@ -80,12 +83,10 @@ class _ChartsPageState extends State<ChartsPage> {
     return SizedBox(
       height: MediaQuery.of(context).size.height / 3,
       width: MediaQuery.of(context).size.width - 50,
-      child: charts.TimeSeriesChart(
+      child: charts.BarChart(
         _seriesLineData,
         animate: false,
-        primaryMeasureAxis: charts.NumericAxisSpec(
-            renderSpec: charts.GridlineRendererSpec(
-                lineStyle: charts.LineStyleSpec(dashPattern: [4, 4]))),
+        barGroupingType: charts.BarGroupingType.groupedStacked,
       ),
     );
   }

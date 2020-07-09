@@ -23,8 +23,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    final dev_height =
-        MediaQuery.of(context).size.height; //height of device screen
     final dev_width = MediaQuery.of(context).size.width;
     AuthService _auth = AuthService();
 
@@ -121,10 +119,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   });
                   dynamic result = await _auth.registerWithEmailAndPassword(
                       name, email, password);
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => MoreDetail()));
-                  });
+
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => MoreDetail()));
+
                   if (result == null) {
                     setState(() {
                       error = "Please try again";
@@ -195,16 +195,18 @@ class _SignUpPageState extends State<SignUpPage> {
                                     setState(() {
                                       loading = true;
                                     });
-                                    await _auth.signInWithGoogle();
-                                    Future.delayed(
-                                        const Duration(milliseconds: 100), () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  MoreDetail()));
-                                    });
+                                    await _auth.signInWithGoogle().then(
+                                        (value) => Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        MoreDetail())));
                                   } catch (e) {
                                     print(e.toString());
+                                    setState(() {
+                                      loading = false;
+                                    });
                                   }
                                 },
                                     shape: RoundedRectangleBorder(

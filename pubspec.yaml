@@ -46,7 +46,7 @@ dependencies:
   firebase_admob: ^0.9.3+2
   flutter_country_picker: ^0.1.6
   random_string: ^2.1.0
-
+  flutter_local_notifications: ^1.4.4+1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
@@ -73,6 +73,7 @@ flutter:
      - assets/charts.png
      - assets/breathing_exercise.png
      - assets/reminder.png
+     - assets/emoji.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

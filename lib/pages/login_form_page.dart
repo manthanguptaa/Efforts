@@ -6,7 +6,6 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginFormPage extends StatefulWidget {
   @override
@@ -94,10 +93,12 @@ class _LoginFormPageState extends State<LoginFormPage> {
                   });
                   dynamic result =
                       await _auth.signInWithEmailAndPassword(email, password);
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    Navigator.pop(context, true);
-                  });
-                  if (result == null) {
+                  Navigator.pop(context, true);
+                 
+                  // Future.delayed(const Duration(milliseconds: 100), () {
+
+                  // });
+                  if(result==null){
                     setState(() {
                       error = "Wrong Credentials";
                       loading = false;
@@ -186,12 +187,14 @@ class _LoginFormPageState extends State<LoginFormPage> {
                                       setState(() {
                                         loading = true;
                                       });
-                                      await _auth.signInWithGoogle();
-                                      Future.delayed(
-                                          const Duration(milliseconds: 100),
-                                          () {
-                                        Navigator.pop(context, true);
-                                      });
+                                      await _auth.signInWithGoogle().then(
+                                          (value) =>
+                                              Navigator.pop(context, true));
+                                      // Future.delayed(
+                                      //     const Duration(milliseconds: 100),
+                                      //     () {
+
+                                      // });
                                     } catch (e) {
                                       print(e.toString());
                                     }

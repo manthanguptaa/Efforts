@@ -292,17 +292,19 @@ class HeroAnimationScreenState extends State<HeroAnimationScreen>
             color: AppTheme.darkBlue,
             child: buildGroupStar()),
         Center(
-          child: Column(
+          child: Wrap(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 120.0),
-                child: Text(
-                  description,
-                  style: GoogleFonts.lato(color: Colors.white, fontSize: 40.0),
+                padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height/10),
+                child: Center(
+                  child: Text(
+                    description,
+                    style: GoogleFonts.lato(color: Colors.white, fontSize: 40.0),
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 50.0),
+                padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height/30),
                 child: timer == 0 ? Relax() : timer == 1 ? Inhale() : Hold(),
               ),
             ],

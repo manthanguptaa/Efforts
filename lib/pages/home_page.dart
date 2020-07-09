@@ -7,6 +7,7 @@ import 'package:effors/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyApp extends StatelessWidget {
@@ -31,6 +32,100 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  AndroidInitializationSettings androidInitializationSettings;
+
+  IOSInitializationSettings iosInitializationSettings;
+
+  InitializationSettings initializationSettings;
+
+  @override
+  void initState() {
+    super.initState();
+    initialiazing();
+    _showNotifications();
+    _navigationController = new CircularBottomNavigationController(selectedPos);
+  }
+
+  void initialiazing() async {
+    androidInitializationSettings =
+        AndroidInitializationSettings("ic_launcher");
+    iosInitializationSettings = IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    initializationSettings = InitializationSettings(
+        androidInitializationSettings, iosInitializationSettings);
+
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  void _showNotifications() async {
+    await notification();
+  }
+
+  // Future<void> notification() async {
+  //   AndroidNotificationDetails androidNotificationDetails =
+  //       AndroidNotificationDetails(
+  //           'Channel_ID', 'Channel title', 'Channel body',
+  //           priority: Priority.High,
+  //           importance: Importance.Max,
+  //           ticker: "text");
+
+  //   IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+  //   NotificationDetails notificationDetails =
+  //       NotificationDetails(androidNotificationDetails, iosNotificationDetails);
+
+  //   await flutterLocalNotificationsPlugin.show(
+  //       0,
+  //       "Good Morning!",
+  //       "Don't forget to do your morning exercise to strengthen your lung capacity",
+  //       notificationDetails);
+  // }
+
+  Future onSelectNotification(String payLoad) {
+    if (payLoad != null) {
+      print(payLoad);
+    }
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => MyApp()));
+  }
+
+  Future onDidReceiveLocalNotification(
+      int id, String title, String body, String payLoad) async {
+    return AlertDialog(
+      title: Text(
+        title,
+        style: GoogleFonts.lato(),
+      ),
+      content: Expanded(child: Text(body, style: GoogleFonts.lato())),
+    );
+  }
+
+  Future<void> notification() async {
+    String wake = await AuthService().getWakeTime().toString();
+    var _startTime = Time(int.parse(wake.split(":")[0]),int.parse(wake.split(":")[1]),0);
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'your other channel id',
+      'your other channel name',
+      'your other channel description',
+      icon: 'ic_launcher',
+      enableLights: true,
+      styleInformation: BigTextStyleInformation(''),
+    );
+    var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+    var platformChannelSpecifics = NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.showDailyAtTime(
+      0,
+      'Good Morning!',
+      "Dont't forget your morning exercise that will help you strengthen your lung capacity",
+      _startTime,
+      platformChannelSpecifics,
+    );
+  }
+
   int selectedPos = 0;
 
   double bottomNavBarHeight = 60;
@@ -48,11 +143,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   CircularBottomNavigationController _navigationController;
 
-  @override
-  void initState() {
-    super.initState();
-    _navigationController = new CircularBottomNavigationController(selectedPos);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+    
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: GestureDetector(
               onTap: () async{
                 await _auth.signOut();
+                // Navigator.pop(context,true);
               },
               child: Text(
                 "Sign Out",

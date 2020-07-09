@@ -1,9 +1,9 @@
 class Record {
-  final DateTime date;
+  final String date;
   final int hold;
   Record({this.hold, this.date});
 
-  Record.fromMap(Map<DateTime, dynamic> map)
+  Record.fromMap(Map<String, dynamic> map)
       : assert(map['date'] != null),
         assert(map['hold'] != null),
         date = map['date'],
