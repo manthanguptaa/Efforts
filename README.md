@@ -1,4 +1,4 @@
-# effors
+# Breathing exercise app
 
 A new Flutter project.
 
